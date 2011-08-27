@@ -183,8 +183,32 @@
 	</References>
 	<Files>
 		<Filter
-			Name="obse"
+			Name="OBSE"
 			>
+			<File
+				RelativePath=".\Dllmain.c"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ForcedIncludeFiles="$(NOINHERIT)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ForcedIncludeFiles="$(NOINHERIT)"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\Exports.def"
+				>
+			</File>
 			<File
 				RelativePath="..\obse\obse\GameActorValues.cpp"
 				>
@@ -310,6 +334,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\obse\obse_common\SafeWrite.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\obse\obse_common\SafeWrite.h"
+				>
+			</File>
+			<File
 				RelativePath="..\obse\obse\Script.cpp"
 				>
 			</File>
@@ -326,32 +358,28 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath=".\dllmain.c"
+		<Filter
+			Name="Resources"
 			>
-			<FileConfiguration
-				Name="Debug|Win32"
+			<File
+				RelativePath=".\Resource.h"
 				>
-				<Tool
-					Name="VCCLCompilerTool"
-					ForcedIncludeFiles="$(NOINHERIT)"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release|Win32"
+			</File>
+			<File
+				RelativePath=".\RuntimeEditorIDs.rc"
 				>
-				<Tool
-					Name="VCCLCompilerTool"
-					ForcedIncludeFiles="$(NOINHERIT)"
-				/>
-			</FileConfiguration>
-		</File>
+			</File>
+		</Filter>
 		<File
-			RelativePath=".\exports.def"
+			RelativePath=".\Commands.cpp"
 			>
 		</File>
 		<File
-			RelativePath=".\main.cpp"
+			RelativePath=".\Commands.h"
+			>
+		</File>
+		<File
+			RelativePath=".\Main.cpp"
 			>
 		</File>
 		<File
@@ -360,14 +388,6 @@
 		</File>
 		<File
 			RelativePath=".\RuntimeEditorIDsInternals.h"
-			>
-		</File>
-		<File
-			RelativePath="..\obse\obse_common\SafeWrite.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\obse\obse_common\SafeWrite.h"
 			>
 		</File>
 	</Files>

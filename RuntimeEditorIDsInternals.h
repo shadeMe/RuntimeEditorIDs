@@ -1,16 +1,20 @@
 #pragma once
 
-#include "obse/PluginAPI.h"
-#include "obse_common/SafeWrite.h"
-#include "obse/GameAPI.h"
-#include "obse/GameForms.h"
-#include "obse/GameTypes.h"
 #include <map>
 #include <vector>
 
+#include "CommandTable.h"
+#include "obse_common\SafeWrite.h"
+#include "obse\PluginAPI.h"
+#include "obse\GameAPI.h"
+#include "obse\GameTypes.h"
+#include "obse\ParamInfos.h"
+#include "obse\ScriptUtils.h"
+#include "obse\GameForms.h"
+#include "obse\GameObjects.h"
 
 #if OBLIVION_VERSION == OBLIVION_VERSION_1_2_416
-	extern const NiTMapBase<const char*, TESForm *>* g_EditorIDTable;	// BSCaseInsensitiveStringMap<TESForm*>*
+	extern const NiTMapBase<const char*, TESForm *>* g_EditorIDTable;	// BSTCaseInsensitiveStringMap<TESForm*>*
 
 	const UInt32 kNiTPointerMap_Add = 0x00452570;			// f(this, T1 key, T2 value)
 	const UInt32 kNiTPointerMap_Remove = 0x004524C0;		// f(this, T1 key)
@@ -18,6 +22,7 @@
 
 	const UInt32 kNiTStringPointerMap_Add = 0x00412D30;		// f(this, const char* key, T1 value)
 	const UInt32 kTESForm_SetEditorID_VTBLOffset = 0xD8;
+	const UInt32 kTESForm_GetEditorID_VTBLOffset = 0xD4;
 
 	struct VTBLData
 	{
@@ -25,7 +30,7 @@
 		const char*			Class;
 	};
 
-	const UInt32 VTBLTableSize = 52;
+	const UInt32 VTBLTableSize = 54;
 	const VTBLData g_VTBLTable[VTBLTableSize] =
 	{
 		{ 0x00A52C6C, "TESClass" },
@@ -35,7 +40,7 @@
 		{ 0x00A548FC, "TESRace" },
 		{ 0x00A5219C, "TESSound" },
 		{ 0x00A54EFC, "TESSkill" },
-		{ 0x00A32B14, "EffectSetting" },	// required ?
+		{ 0x00A32B14, "EffectSetting" },
 		{ 0x00A49DA4, "Script" },
 		{ 0x00A4656C, "TESLandTexture" },
 		{ 0x00A33C84, "EnchantmentItem" },
@@ -71,7 +76,6 @@
 		{ 0x00A45C9C, "TESClimate" },
 		{ 0x00A3FEE4, "TESRegion" },
 		{ 0x00A46C44, "TESObjectREFR" },
-		{ 0x00A5555C, "TESTopic" },
 		{ 0x00A53774, "TESIdleForm" },
 		{ 0x00A6743C, "TESPackage" },
 		{ 0x00A407F4, "TESCombatStyle" },
@@ -79,7 +83,10 @@
 		{ 0x00A42F1C, "TESLevSpell" },
 		{ 0x00A43DFC, "TESObjectANIO" },
 		{ 0x00A47F0C, "TESWaterForm" },
-		{ 0x00A419EC, "TESEffectShader" }
+		{ 0x00A419EC, "TESEffectShader" },
+		{ 0x00A6FC9C, "Character" },
+		{ 0x00A6E074, "Actor" },
+		{ 0x00A710F4, "Creature" }
 	};
 
 #else
@@ -97,13 +104,19 @@ class EditorIDManager
 
 	typedef std::map<char*, std::vector<TESForm*>*,
 							AllocMap_Key_Comparer>		_AllocMap;
-	_AllocMap											AllocMap;
+	typedef std::map<UInt32, const char*>				_EditorIDMap;
 
-	void												Lookup(const char* LookupID, const char** ResultID, std::vector<TESForm*>** ResultFormList);
+	_AllocMap											AllocMap;
+	_EditorIDMap										EditorIDMap;
+
+	void												LookupByEditorID(const char* LookupID, const char** ResultID, std::vector<TESForm*>** ResultFormList);
 public:
-	void												Manage(const char* EditorID, TESForm* Form);			
+	void												Manage(const char* EditorID, TESForm* Form);
+	const char*											LookupByFormID(UInt32 FormID);
 };
 
 extern EditorIDManager		g_editorIDManager;
 
 void __stdcall TESForm_HandleEditorID(const char* EditorID);
+
+extern OBSEStringVarInterface*		g_strVarInfc;
