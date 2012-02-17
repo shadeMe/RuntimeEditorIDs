@@ -6,8 +6,8 @@ EditorIDManager				g_editorIDManager;
 
 void EditorIDManager::LookupByEditorID(const char* LookupID, const char** ResultID, std::vector<TESForm*>** ResultFormList)
 {
-	_AllocMap::const_iterator Itr = AllocMap.find(const_cast<char*>(LookupID));
-	if (Itr != AllocMap.end())
+	EditorIDAllocationMapT::const_iterator Itr = EIDAllocationMap.find(const_cast<char*>(LookupID));
+	if (Itr != EIDAllocationMap.end())
 	{
 		*ResultID = Itr->first;
 		*ResultFormList = const_cast<std::vector<TESForm*>*>(Itr->second);
@@ -19,8 +19,8 @@ void EditorIDManager::LookupByEditorID(const char* LookupID, const char** Result
 
 const char* EditorIDManager::LookupByFormID(UInt32 FormID)
 {
-	_EditorIDMap::const_iterator Itr = EditorIDMap.find(FormID);
-	if (Itr != EditorIDMap.end())
+	FormIDEditorIDMapT::const_iterator Itr = FormIDReferenceMap.find(FormID);
+	if (Itr != FormIDReferenceMap.end())
 		return Itr->second;
 	else
 		return NULL;
@@ -42,7 +42,7 @@ void EditorIDManager::Manage(const char* EditorID, TESForm* Form)
 		std::vector<TESForm*>* InitList = new std::vector<TESForm*>;
 		InitList->push_back(Form);
 
-		AllocMap.insert(std::make_pair<char*, std::vector<TESForm*>*>(AllocString, InitList));
+		EIDAllocationMap.insert(std::make_pair<char*, std::vector<TESForm*>*>(AllocString, InitList));
 		AllocatedEditorID = AllocString;
 	}
 	else
@@ -50,7 +50,7 @@ void EditorIDManager::Manage(const char* EditorID, TESForm* Form)
 		FormList->push_back(Form);
 	}
 
-	EditorIDMap[Form->refID] = AllocatedEditorID;
+	FormIDReferenceMap[Form->refID] = AllocatedEditorID;
 
 	ThisStdCall(kNiTStringPointerMap_Add, (void*)g_EditorIDTable, AllocatedEditorID, Form);
 }

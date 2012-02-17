@@ -23,7 +23,7 @@ static bool Cmd_GetRuntimeEditorID_Execute(COMMAND_ARGS)
 	else
 		g_strVarInfc->Assign(PASS_COMMAND_ARGS, EditorID);
 
-	if (EditorID)
+	if (EditorID && IsConsoleOpen())
 		Console_Print("EditorID: %s", EditorID);
 	return true;
 }

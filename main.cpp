@@ -12,28 +12,27 @@ extern "C"
 	{
 		info->infoVersion = PluginInfo::kInfoVersion;
 		info->name = "REID";
-		info->version = 3;
+		info->version = 4;
 
-		if(!obse->isEditor)
+		if(obse->obseVersion < OBSE_VERSION_INTEGER)
 		{
-			if(obse->obseVersion < OBSE_VERSION_INTEGER)
-			{
-				_ERROR("OBSE version too old (got %08X expected at least %08X)", obse->obseVersion, OBSE_VERSION_INTEGER);
-				return false;
-			}
-
+			_ERROR("OBSE version too old (got %08X expected at least %08X)", obse->obseVersion, OBSE_VERSION_INTEGER);
+			return false;
+		}
+		else if(!obse->isEditor)
+		{
 			if(obse->oblivionVersion != OBLIVION_VERSION)
 			{
 				_ERROR("incorrect Oblivion version (got %08X need %08X)", obse->oblivionVersion, OBLIVION_VERSION);
 				return false;
 			}
-		}
 
-		g_strVarInfc = (OBSEStringVarInterface*)obse->QueryInterface(kInterface_StringVar);
-		if (g_strVarInfc == NULL)
-		{
-			_ERROR("Couldn't initialize string var interface");
-			return false;
+			RegisterStringVarInterface(g_strVarInfc);
+			if (g_strVarInfc == NULL)
+			{
+				_ERROR("Couldn't initialize string var interface");
+				return false;
+			}
 		}
 
 		return true;

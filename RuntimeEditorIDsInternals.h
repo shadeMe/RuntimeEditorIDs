@@ -30,7 +30,7 @@
 		const char*			Class;
 	};
 
-	const UInt32 VTBLTableSize = 54;
+	const UInt32 VTBLTableSize = 53;
 	const VTBLData g_VTBLTable[VTBLTableSize] =
 	{
 		{ 0x00A52C6C, "TESClass" },
@@ -38,7 +38,6 @@
 		{ 0x00A53654, "TESHair" },
 		{ 0x00A53414, "TESEyes" },
 		{ 0x00A548FC, "TESRace" },
-		{ 0x00A5219C, "TESSound" },
 		{ 0x00A54EFC, "TESSkill" },
 		{ 0x00A32B14, "EffectSetting" },
 		{ 0x00A49DA4, "Script" },
@@ -95,26 +94,25 @@
 
 class EditorIDManager
 {
-	struct AllocMap_Key_Comparer
+	struct CaseInsensitiveStringComparer
 	{
-		bool operator()(const char* Key1, const char* Key2) const {
+		bool operator()(const char* Key1, const char* Key2) const
+		{
 			return _stricmp(Key1, Key2) < 0;
 		}
 	};
 
-	typedef std::map<char*, std::vector<TESForm*>*,
-							AllocMap_Key_Comparer>		_AllocMap;
-	typedef std::map<UInt32, const char*>				_EditorIDMap;
+	typedef std::map<char*, std::vector<TESForm*>*, CaseInsensitiveStringComparer>		EditorIDAllocationMapT;
+	typedef std::map<UInt32, const char*>												FormIDEditorIDMapT;
 
-	_AllocMap											AllocMap;
-	_EditorIDMap										EditorIDMap;
+	EditorIDAllocationMapT								EIDAllocationMap;
+	FormIDEditorIDMapT									FormIDReferenceMap;
 
 	void												LookupByEditorID(const char* LookupID, const char** ResultID, std::vector<TESForm*>** ResultFormList);
 public:
 	void												Manage(const char* EditorID, TESForm* Form);
 	const char*											LookupByFormID(UInt32 FormID);
 };
-
 extern EditorIDManager		g_editorIDManager;
 
 void __stdcall TESForm_HandleEditorID(const char* EditorID);
