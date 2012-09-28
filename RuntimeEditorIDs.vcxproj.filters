@@ -133,14 +133,16 @@
     <ClInclude Include="..\obse\obse\Utilities.h">
       <Filter>OBSE</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Resources</Filter>
-    </ClInclude>
     <ClInclude Include="Commands.h" />
     <ClInclude Include="RuntimeEditorIDsInternals.h" />
+    <ClInclude Include="VersionInfo.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Construction Set Extender\CSEInterfaceAPI.h" />
+    <ClInclude Include="REIDInterfaceAPI.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="RuntimeEditorIDs.rc">
+    <ResourceCompile Include="VersionInfo.rc">
       <Filter>Resources</Filter>
     </ResourceCompile>
   </ItemGroup>

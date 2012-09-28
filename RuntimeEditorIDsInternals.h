@@ -13,6 +13,12 @@
 #include "obse\GameForms.h"
 #include "obse\GameObjects.h"
 
+#include "[Libraries]\SME Sundries\SME_Prefix.h"
+#include "[Libraries]\SME Sundries\MiscGunk.h"
+
+#include "REIDInterfaceAPI.h"
+#include "Construction Set Extender\CSEInterfaceAPI.h"
+
 #if OBLIVION_VERSION == OBLIVION_VERSION_1_2_416
 	extern const NiTMapBase<const char*, TESForm *>* g_EditorIDTable;	// BSTCaseInsensitiveStringMap<TESForm*>*
 
@@ -118,3 +124,4 @@ extern EditorIDManager		g_editorIDManager;
 void __stdcall TESForm_HandleEditorID(const char* EditorID);
 
 extern OBSEStringVarInterface*		g_strVarInfc;
+extern OBSEMessagingInterface*		g_msgIntfc;
