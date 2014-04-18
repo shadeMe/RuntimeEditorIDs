@@ -160,7 +160,6 @@
     <None Include="..\obse\obse\GameRTTI_1_2_416.inl" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Construction Set Extender\CSEInterfaceAPI.h" />
     <ClInclude Include="..\obse\obse\GameActorValues.h" />
     <ClInclude Include="..\obse\obse\GameAPI.h" />
     <ClInclude Include="..\obse\obse\GameBSExtraData.h" />

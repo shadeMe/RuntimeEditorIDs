@@ -138,7 +138,6 @@
     <ClInclude Include="VersionInfo.h">
       <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="..\Construction Set Extender\CSEInterfaceAPI.h" />
     <ClInclude Include="REIDInterfaceAPI.h" />
   </ItemGroup>
   <ItemGroup>
