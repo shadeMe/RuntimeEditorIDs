@@ -13,10 +13,12 @@
 #include "obse\GameForms.h"
 #include "obse\GameObjects.h"
 
-#include "[Libraries]\SME Sundries\SME_Prefix.h"
-#include "[Libraries]\SME Sundries\MiscGunk.h"
+#include <SME_Prefix.h>
+#include <MiscGunk.h>
 
 #include "REIDInterfaceAPI.h"
+
+#define CSEAPI_NO_CODA
 #include "Construction Set Extender\CSEInterfaceAPI.h"
 
 #if OBLIVION_VERSION == OBLIVION_VERSION_1_2_416
@@ -125,3 +127,4 @@ void __stdcall TESForm_HandleEditorID(const char* EditorID);
 
 extern OBSEStringVarInterface*		g_strVarInfc;
 extern OBSEMessagingInterface*		g_msgIntfc;
+extern OBSEScriptInterface*			g_scriptIntfc;

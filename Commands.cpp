@@ -4,7 +4,7 @@ static bool Cmd_GetRuntimeEditorID_Execute(COMMAND_ARGS)
 {
 	TESForm* BaseObject = NULL;
 
-	if (!ExtractArgs(EXTRACT_ARGS, &BaseObject) ||
+	if (!g_scriptIntfc->ExtractArgsEx(paramInfo, arg1, opcodeOffsetPtr, scriptObj, eventList, &BaseObject) ||
 		(thisObj == NULL && BaseObject == NULL))
 	{
 		g_strVarInfc->Assign(PASS_COMMAND_ARGS, "");
@@ -23,8 +23,9 @@ static bool Cmd_GetRuntimeEditorID_Execute(COMMAND_ARGS)
 	else
 		g_strVarInfc->Assign(PASS_COMMAND_ARGS, EditorID);
 
-	if (EditorID && IsConsoleOpen())
+	if (EditorID && IsConsoleMode())
 		Console_Print("EditorID: %s", EditorID);
+
 	return true;
 }
 

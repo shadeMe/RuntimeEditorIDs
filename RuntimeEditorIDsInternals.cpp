@@ -42,7 +42,7 @@ void EditorIDManager::Manage(const char* EditorID, TESForm* Form)
 		std::vector<TESForm*>* InitList = new std::vector<TESForm*>;
 		InitList->push_back(Form);
 
-		EIDAllocationMap.insert(std::make_pair<char*, std::vector<TESForm*>*>(AllocString, InitList));
+		EIDAllocationMap.insert(make_pair(AllocString, InitList));
 		AllocatedEditorID = AllocString;
 	}
 	else

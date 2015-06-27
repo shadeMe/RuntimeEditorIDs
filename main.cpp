@@ -7,6 +7,7 @@ IDebugLog					gLog("RuntimeEditorIDs.log");
 PluginHandle				g_pluginHandle = kPluginHandle_Invalid;
 OBSEStringVarInterface*		g_strVarInfc = NULL;
 OBSEMessagingInterface*		g_msgIntfc = NULL;
+OBSEScriptInterface*		g_scriptIntfc = NULL;
 
 CSEIntelliSenseInterface*	g_CSEISIntfc	= NULL;
 CSEConsoleInterface*		g_CSEConsoleIntfc	= NULL;
@@ -95,6 +96,13 @@ extern "C"
 			if (g_strVarInfc == NULL)
 			{
 				_ERROR("Couldn't initialize string var interface");
+				return false;
+			}
+
+			g_scriptIntfc = (OBSEScriptInterface*)obse->QueryInterface(kInterface_Script);
+			if (g_scriptIntfc == NULL)
+			{
+				_MESSAGE("Script interface not found");
 				return false;
 			}
 		}
