@@ -18,13 +18,18 @@ static bool Cmd_GetRuntimeEditorID_Execute(COMMAND_ARGS)
 		FormID = BaseObject->refID;
 
 	const char* EditorID = g_editorIDManager.LookupByFormID(FormID);
+	if (EditorID == NULL && BaseObject)
+		EditorID = BaseObject->GetEditorID();
+
 	if (EditorID == NULL)
 		g_strVarInfc->Assign(PASS_COMMAND_ARGS, "");
 	else
+	{
 		g_strVarInfc->Assign(PASS_COMMAND_ARGS, EditorID);
 
-	if (EditorID && IsConsoleMode())
-		Console_Print("EditorID: %s", EditorID);
+		if (IsConsoleMode())
+			Console_Print("EditorID: %s", EditorID);
+	}
 
 	return true;
 }
