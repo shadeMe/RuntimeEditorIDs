@@ -57,12 +57,12 @@
     <ClCompile Include="..\obse\obse\Script.cpp">
       <Filter>OBSE</Filter>
     </ClCompile>
-    <ClCompile Include="..\obse\obse\Utilities.cpp">
-      <Filter>OBSE</Filter>
-    </ClCompile>
     <ClCompile Include="Commands.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="RuntimeEditorIDsInternals.cpp" />
+    <ClCompile Include="..\OBSE\obse\Utilities.cpp">
+      <Filter>OBSE</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Exports.def">
@@ -130,15 +130,15 @@
     <ClInclude Include="..\obse\obse\Script.h">
       <Filter>OBSE</Filter>
     </ClInclude>
-    <ClInclude Include="..\obse\obse\Utilities.h">
-      <Filter>OBSE</Filter>
-    </ClInclude>
     <ClInclude Include="Commands.h" />
     <ClInclude Include="RuntimeEditorIDsInternals.h" />
     <ClInclude Include="VersionInfo.h">
       <Filter>Resources</Filter>
     </ClInclude>
     <ClInclude Include="REIDInterfaceAPI.h" />
+    <ClInclude Include="..\OBSE\obse\Utilities.h">
+      <Filter>OBSE</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VersionInfo.rc">

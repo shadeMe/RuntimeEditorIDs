@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -20,12 +20,12 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v120_xp</PlatformToolset>
+    <PlatformToolset>v140_xp</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120_xp</PlatformToolset>
+    <PlatformToolset>v140_xp</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -131,6 +131,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\OBSE\obse\Utilities.cpp" />
     <ClCompile Include="Dllmain.c">
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </ForcedIncludeFiles>
@@ -152,7 +153,6 @@
     <ClCompile Include="..\obse\obse\NiTypes.cpp" />
     <ClCompile Include="..\obse\obse_common\SafeWrite.cpp" />
     <ClCompile Include="..\obse\obse\Script.cpp" />
-    <ClCompile Include="..\obse\obse\Utilities.cpp" />
     <ClCompile Include="Commands.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="RuntimeEditorIDsInternals.cpp" />
@@ -179,9 +179,9 @@
     <ClInclude Include="..\obse\obse\NiTypes.h" />
     <ClInclude Include="..\obse\obse\ParamInfos.h" />
     <ClInclude Include="..\obse\obse\PluginAPI.h" />
+    <ClInclude Include="..\OBSE\obse\Utilities.h" />
     <ClInclude Include="..\obse\obse_common\SafeWrite.h" />
     <ClInclude Include="..\obse\obse\Script.h" />
-    <ClInclude Include="..\obse\obse\Utilities.h" />
     <ClInclude Include="Commands.h" />
     <ClInclude Include="REIDInterfaceAPI.h" />
     <ClInclude Include="RuntimeEditorIDsInternals.h" />
